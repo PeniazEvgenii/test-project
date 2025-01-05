@@ -4,4 +4,6 @@ import by.it_academy.data.repository.entity.ProjectEmployee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProjectEmployeeRepository extends JpaRepository<ProjectEmployee, Long> {
+
+    boolean existsByEmployeeIdAndProjectId(Long employeeId, Long projectId);
 }
