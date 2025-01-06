@@ -1,0 +1,38 @@
+name: project-employee
+
+services:
+  web:
+    build: web
+    image: web:1.0.2
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    restart: always
+    depends_on:
+      - employee-db
+    networks:
+      - app-network
+
+  employee-db:
+    build: mysql
+    image: mysql-project:1.0.4
+    restart: always
+    networks:
+      - app-network
+    volumes:
+      - db-data:/var/lib/mysql
+
+  dbeaver:
+    image: dbeaver/cloudbeaver
+    ports:
+      - "7777:8978"
+    depends_on:
+      - employee-db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
