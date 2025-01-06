@@ -35,7 +35,7 @@ public class ControllerExceptionHandler {
                 }).toList();
 
         StructuredErrorResponse structuredErrorResponse = new StructuredErrorResponse(EError.STRUCTURED_ERROR, errors);
-        log.error("Argument annotated with fails.Errors: {}", errors);
+        log.error("Argument annotated with fails.Errors: {}", errors, ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(structuredErrorResponse);
     }
@@ -59,7 +59,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<List<ErrorResponse>> onNoResourceFoundException(NoResourceFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse(EError.ERROR, exception.getMessage());
-        log.error("ResourceHttpRequestHandler can not find a resource: {}", exception.getMessage());
+        log.error("ResourceHttpRequestHandler can not find a resource: {}", exception.getMessage(), exception);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(List.of(errorResponse));
     }
@@ -68,7 +68,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<List<ErrorResponse>> onHttpMessageNotReadableException (HttpMessageNotReadableException exception) {
         ErrorResponse errorResponse = new ErrorResponse(EError.ERROR,
                 "Data type transmitted in the request does not meet requirements");
-        log.error("The HttpMessageConverter. read method fails: {}", exception.getMessage());
+        log.error("The HttpMessageConverter. read method fails: {}", exception.getMessage(), exception);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(List.of(errorResponse));
     }
@@ -85,7 +85,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<List<ErrorResponse>> onException(Exception exception) {
         ErrorResponse errorResponse = new ErrorResponse(EError.ERROR,
                 "Server failed to process request correctly. Please try later or contact administrator");
-        log.error("Exception. Error: {}", exception.getMessage());
+        log.error("Exception. Error: {}", exception.getMessage(), exception);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(List.of(errorResponse));
     }
