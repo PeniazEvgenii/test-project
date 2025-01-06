@@ -10,7 +10,6 @@ import by.it_academy.service.service.api.IProjectService;
 import by.it_academy.service.service.dto.EmployeeForProjectDto;
 import by.it_academy.service.service.validation.exception.EmployeeNotAddException;
 import by.it_academy.service.service.validation.exception.IdNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
