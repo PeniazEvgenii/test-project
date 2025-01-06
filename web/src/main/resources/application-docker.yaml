@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://employee-db:3306/project
+    username: app_user
+    password: 12345
