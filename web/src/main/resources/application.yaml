@@ -9,11 +9,6 @@ spring:
       show_sql: true
       format_sql: true
       hbm2ddl.auto: validate
-      default_schema: app
 
   jackson:
     property-naming-strategy: SNAKE_CASE
-
-#logging:
-#  level:
-#    root: info
