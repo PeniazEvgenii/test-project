@@ -10,6 +10,6 @@ public class LatinLettersValidator implements ConstraintValidator<LatinLetters, 
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value.matches("^[a-zA-Z]+$");
+        return value.matches("^[a-zA-Z\\s]+$");
     }
 }
